@@ -5,6 +5,33 @@ if (Meteor.isServer) {
     console.log("Starting PhlatDownload");
   });
 
+  var Api = new Restivus({
+    useDefaultAuth: true,
+    prettyJson: true
+  });
+
+  Api.addRoute('jobs/:nodeName', {authRequired: false}, {
+    get: function() {
+      return Jobs.find({
+        $and: [
+          { node: this.urlParams.nodeName },
+          { status: "pending" }
+        ]
+      }).fetch();
+    },
+    post: function() {
+      var status = this.queryParams.status;
+      var jobId = this.queryParams.id;
+      Jobs.update(
+        {_id: jobId},
+        {$set: {
+          status: status
+        }}
+      );
+      return Jobs.find({_id: jobId}).fetch();
+    }
+  });
+
   Meteor.publish("jobs", function() {
     return Jobs.find({creator: this.userId});
   })
