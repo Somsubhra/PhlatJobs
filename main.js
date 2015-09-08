@@ -2,7 +2,7 @@ Jobs = new Mongo.Collection("jobs");
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    console.log("Starting PhlatDownload");
+    console.log("Starting PhlatJobs");
   });
 
   var Api = new Restivus({
