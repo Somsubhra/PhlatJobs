@@ -1,0 +1,89 @@
+<head>
+  <title>PhlatDownload</title>
+</head>
+
+<body>
+  {{> main }}
+</body>
+
+<template name="main">
+    {{> header }}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{> jobForm }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{> jobs }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+</template>
+
+<template name="header">
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">PhlatDownload</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                {{> loginButtons }}
+            </ul>
+        </div>
+    </div>
+</template>
+
+<template name="jobForm">
+    <form class="new-job form well well-lg">
+        <div class="form-group">
+            <textarea id="job" class="form-control" placeholder="Enter job"></textarea>
+        </div>
+        <div class="form-group">
+            <input type="text" id="node" class="form-control" placeholder="Enter node name" />
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Add job" />
+        </div>
+    </form>
+</template>
+
+<template name="jobs">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Job</th>
+            <th>Node</th>
+            <th>Status</th>
+            <th>Created at</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each jobs}}
+            {{> job }}
+        {{/each}}
+        </tbody>
+    </table>
+</template>
+
+<template name="job">
+    <tr class="{{ trClass status }}">
+        <td>{{ job }}</td>
+        <td>{{ node }}</td>
+        <td>{{ status }}</td>
+        <td>{{ creationTime }}</td>
+    </tr>
+</template>
