@@ -8,6 +8,7 @@
 
 <template name="main">
     {{> header }}
+    {{> jobForm }}
 </template>
 
 <template name="header">
@@ -25,6 +26,28 @@
             <ul class="nav navbar-nav navbar-right">
                 {{> loginButtons }}
             </ul>
+        </div>
+    </div>
+</template>
+
+<template name="jobForm">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <form class="new-job form well well-lg">
+                    <div class="form-group">
+                        <textarea id="job" class="form-control" placeholder="Enter job"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="node" class="form-control" placeholder="Enter node name" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="Add job" />
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
         </div>
     </div>
 </template>

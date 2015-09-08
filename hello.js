@@ -1,7 +1,16 @@
 Jobs = new Mongo.Collection("jobs");
 
 if (Meteor.isClient) {
-
+  Template.jobForm.events({
+    "submit .new-job": function(event) {
+      event.preventDefault();
+      var jobInp = $("#job");
+      var nodeInp = $("#node");
+      Meteor.call("addJob", jobInp.val(), nodeInp.val());
+      jobInp.val("");
+      nodeInp.val("");
+    }
+  });
 }
 
 if (Meteor.isServer) {
